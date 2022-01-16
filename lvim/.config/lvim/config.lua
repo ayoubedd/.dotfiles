@@ -13,7 +13,7 @@ lvim.log.level = "warn"
 lvim.format_on_save = false
 vim.g.tokyonight_style = "night"
 lvim.colorscheme = "tokyonight"
-lvim.builtin.telescope.defaults.file_ignore_patterns = {}
+lvim.builtin.telescope.defaults.file_ignore_patterns = {"node_modules", "package-lock.json"}
 
 -- keymappings [view all the defaults by pressing <leader>Lk]
 lvim.leader = "space"
@@ -22,7 +22,7 @@ lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
 -- unmap a default keymapping
 -- lvim.keys.normal_mode["<C-Up>"] = false
 -- edit a default keymapping
--- lvim.keys.normal_mode["<C-q>"] = ":q<cr>"
+lvim.keys.normal_mode["<C-q>"] = ":q<cr>"
 
 -- Change Telescope navigation to use j and k for navigation and n and p for history in both input and normal mode.
 -- we use protected-mode (pcall) just in case the plugin wasn't loaded yet.
@@ -206,7 +206,7 @@ lvim.plugins = {
   config = function()
   require('goto-preview').setup {
         width = 120; -- Width of the floating window
-        height = 25; -- Height of the floating window
+        height = 50; -- Height of the floating window
         default_mappings = false; -- Bind default mappings
         debug = false; -- Print debug information
         opacity = nil; -- 0-100 opacity level of the floating window where 100 is fully transparent.
@@ -235,13 +235,6 @@ lvim.plugins = {
     show_numbers = true, -- Enable 'number' for the window while peeking
     show_cursorline = true, -- Enable 'cursorline' for the window while peeking
   }
-  end,
-},
-
-{
-  "Pocco81/AutoSave.nvim",
-  config = function()
-    require("autosave").setup()
   end,
 },
 
