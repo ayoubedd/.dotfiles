@@ -174,6 +174,121 @@ lvim.plugins = {
 			})
 		end,
 	},
+
+
+  {
+  "windwp/nvim-ts-autotag",
+  event = "InsertEnter",
+  config = function()
+    require("nvim-ts-autotag").setup()
+  end,
+},
+
+
+{
+  "norcalli/nvim-colorizer.lua",
+    config = function()
+      require("colorizer").setup({ "*" }, {
+          RGB = true, -- #RGB hex codes
+          RRGGBB = true, -- #RRGGBB hex codes
+          RRGGBBAA = true, -- #RRGGBBAA hex codes
+          rgb_fn = true, -- CSS rgb() and rgba() functions
+          hsl_fn = true, -- CSS hsl() and hsla() functions
+          css = true, -- Enable all CSS features: rgb_fn, hsl_fn, names, RGB, RRGGBB
+          css_fn = true, -- Enable all CSS *functions*: rgb_fn, hsl_fn
+          })
+  end,
+},
+
+
+{
+  "rmagatti/goto-preview",
+  config = function()
+  require('goto-preview').setup {
+        width = 120; -- Width of the floating window
+        height = 25; -- Height of the floating window
+        default_mappings = false; -- Bind default mappings
+        debug = false; -- Print debug information
+        opacity = nil; -- 0-100 opacity level of the floating window where 100 is fully transparent.
+        post_open_hook = nil -- A function taking two arguments, a buffer and a window to be ran as a hook.
+        -- You can use "default_mappings = true" setup option
+        -- Or explicitly set keybindings
+        -- vim.cmd("nnoremap gpd <cmd>lua require('goto-preview').goto_preview_definition()<CR>")
+        -- vim.cmd("nnoremap gpi <cmd>lua require('goto-preview').goto_preview_implementation()<CR>")
+        -- vim.cmd("nnoremap gP <cmd>lua require('goto-preview').close_all_win()<CR>")
+    }
+  end
+},
+
+
+{
+  "simrat39/symbols-outline.nvim",
+  cmd = "SymbolsOutline",
+},
+
+
+{
+  "nacro90/numb.nvim",
+  event = "BufRead",
+  config = function()
+  require("numb").setup {
+    show_numbers = true, -- Enable 'number' for the window while peeking
+    show_cursorline = true, -- Enable 'cursorline' for the window while peeking
+  }
+  end,
+},
+
+{
+  "Pocco81/AutoSave.nvim",
+  config = function()
+    require("autosave").setup()
+  end,
+},
+
+{
+  "monaqa/dial.nvim",
+  event = "BufRead",
+  config = function()
+    local dial = require "dial"
+    vim.cmd [[
+    nmap <C-a> <Plug>(dial-increment)
+      nmap <C-x> <Plug>(dial-decrement)
+      vmap <C-a> <Plug>(dial-increment)
+      vmap <C-x> <Plug>(dial-decrement)
+      vmap g<C-a> <Plug>(dial-increment-additional)
+      vmap g<C-x> <Plug>(dial-decrement-additional)
+    ]]
+
+    dial.augends["custom#boolean"] = dial.common.enum_cyclic {
+      name = "boolean",
+      strlist = { "true", "false" },
+    }
+    table.insert(dial.config.searchlist.normal, "custom#boolean")
+
+    -- For Languages which prefer True/False, e.g. python.
+    dial.augends["custom#Boolean"] = dial.common.enum_cyclic {
+      name = "Boolean",
+      strlist = { "True", "False" },
+    }
+    table.insert(dial.config.searchlist.normal, "custom#Boolean")
+  end,
+},
+
+
+{
+  "lukas-reineke/indent-blankline.nvim",
+  event = "BufRead",
+  setup = function()
+    vim.g.indentLine_enabled = 1
+    vim.g.indent_blankline_char = "▏"
+    vim.g.indent_blankline_filetype_exclude = {"help", "terminal", "dashboard"}
+    vim.g.indent_blankline_buftype_exclude = {"terminal"}
+    vim.g.indent_blankline_show_trailing_blankline_indent = false
+    vim.g.indent_blankline_show_first_indent_level = false
+  end
+},
+
+
 }
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
