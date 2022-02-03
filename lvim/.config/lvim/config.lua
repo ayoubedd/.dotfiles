@@ -259,14 +259,14 @@ lvim.plugins = {
 }
 
 
-local linters = require "lvim.lsp.null-ls.linters"
+-- local linters = require "lvim.lsp.null-ls.linters"
 
-linters.setup {
-  {
-    exe = "eslint_d",
-    filetypes = { "javascript", "typescript", "javascriptreact", "typescriptreact" },
-  },
-}
+-- linters.setup {
+--   {
+--     exe = "eslint_d",
+--     filetypes = { "javascript", "typescript", "javascriptreact", "typescriptreact" },
+--   },
+-- }
 
 -- formatters.setup {
 --   -- { exe = "black" },
